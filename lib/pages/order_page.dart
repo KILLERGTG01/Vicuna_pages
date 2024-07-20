@@ -73,18 +73,19 @@ class OrderPage extends StatelessWidget {
                 border: OutlineInputBorder(),
               ),
             ),
+            const Spacer(),
           ],
         ),
       ),
       bottomNavigationBar: BottomAppBar(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
+          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0), // Adjusted padding to move elements up
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
                 '\$$totalPrice',
-                style:  TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               ElevatedButton(
                 onPressed: () {},
