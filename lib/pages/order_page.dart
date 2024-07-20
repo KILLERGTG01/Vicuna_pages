@@ -5,6 +5,10 @@ class OrderPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const double rollerRabbitPrice = 198.00;
+    const double axelArigatoPrice = 245.00;
+    const double totalPrice = rollerRabbitPrice + axelArigatoPrice;
+
     return Scaffold(
       appBar: AppBar(
         leading: Container(
@@ -30,7 +34,7 @@ class OrderPage extends StatelessWidget {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
-             Container(
+            Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
                 color: Colors.grey[200],
@@ -55,8 +59,8 @@ class OrderPage extends StatelessWidget {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
-            buildProductItem('Roller Rabbit', 'Vado Odelle Dress', 198.00),
-            buildProductItem('Axel Arigato', 'Clean 90 Triple Sneakers', 245.00),
+            buildProductItem('Roller Rabbit', 'Vado Odelle Dress', rollerRabbitPrice),
+            buildProductItem('Axel Arigato', 'Clean 90 Triple Sneakers', axelArigatoPrice),
             const SizedBox(height: 16),
             const Text(
               'Promo Code',
@@ -79,8 +83,8 @@ class OrderPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const Text(
-                '\$443.00',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                '\$$totalPrice',
+                style:  TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               ElevatedButton(
                 onPressed: () {},
@@ -139,12 +143,12 @@ class OrderPage extends StatelessWidget {
                   style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
                 Text(description),
+                Text(
+                  '\$$price',
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
               ],
             ),
-          ),
-          Text(
-            '\$$price',
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ],
       ),
