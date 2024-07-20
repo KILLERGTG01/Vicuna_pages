@@ -24,7 +24,7 @@ class OrderPage extends StatelessWidget {
           ),
         ),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,20 +66,26 @@ class OrderPage extends StatelessWidget {
               'Promo Code',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 16),
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Add Promo Code',
-                border: OutlineInputBorder(),
+            
+            Container(
+              padding: const EdgeInsets.all(16.0),
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'Add Promo Code',
+                  border: OutlineInputBorder(),
+                ),
               ),
             ),
-            const Spacer(),
           ],
         ),
       ),
       bottomNavigationBar: BottomAppBar(
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0), // Adjusted padding to move elements up
+          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -124,8 +130,13 @@ class OrderPage extends StatelessWidget {
   }
 
   Widget buildProductItem(String name, String description, double price) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
+    return Container(
+      margin: const EdgeInsets.only(bottom: 16.0),
+      padding: const EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: Colors.grey[200],
+        borderRadius: BorderRadius.circular(10.0),
+      ),
       child: Row(
         children: [
           Container(
