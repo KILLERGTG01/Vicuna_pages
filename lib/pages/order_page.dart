@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vicuna_pages/pages/tracking_page.dart';
 
 class OrderPage extends StatelessWidget {
   const OrderPage({super.key});
@@ -66,7 +67,6 @@ class OrderPage extends StatelessWidget {
               'Promo Code',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            
             Container(
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
@@ -94,7 +94,13 @@ class OrderPage extends StatelessWidget {
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const TrackingPage(),
+                    ),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black,
                   textStyle: const TextStyle(color: Colors.white),
