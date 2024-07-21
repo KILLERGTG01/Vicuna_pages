@@ -72,10 +72,6 @@ class TrackingPage extends StatelessWidget {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search, color: Colors.black),
-            label: 'Search',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.shopping_cart, color: Colors.black),
             label: 'Cart',
           ),
