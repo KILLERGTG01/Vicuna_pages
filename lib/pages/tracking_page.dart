@@ -90,9 +90,7 @@ class TrackingPage extends StatelessWidget {
         ],
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.black,
-        onTap: (index) {
-          // Handle navigation logic here
-        },
+        onTap: (index) {},
       ),
     );
   }
