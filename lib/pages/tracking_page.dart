@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
 
-class TrackingPage extends StatelessWidget {
+class TrackingPage extends StatefulWidget {
   const TrackingPage({super.key});
+
+  @override
+  State<TrackingPage> createState(){
+    return TrackingPageState();
+  }
+}
+
+class TrackingPageState extends State<TrackingPage> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,28 +83,46 @@ class TrackingPage extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: Colors.black),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart, color: Colors.black),
-            label: 'Cart',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications, color: Colors.black),
-            label: 'Bell',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person, color: Colors.black),
-            label: 'Profile',
-          ),
-        ],
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.black,
-        onTap: (index) {},
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 6.0,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            buildBottomNavigationItem(0, Icons.home, 'Home'),
+            buildBottomNavigationItem(1, Icons.shopping_cart, 'Cart'),
+            buildBottomNavigationItem(2, Icons.notifications, 'Updates'),
+            buildBottomNavigationItem(3, Icons.person, 'Profile'),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildBottomNavigationItem(int index, IconData icon, String label) {
+    bool isSelected = _selectedIndex == index;
+    return GestureDetector(
+      onTap: () => _onItemTapped(index),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+        decoration: isSelected
+            ? BoxDecoration(
+                color: Colors.grey[200],
+                border: Border.all(color: Colors.black, width: 2.0),
+                borderRadius: BorderRadius.circular(30.0),
+              )
+            : null,
+        child: Row(
+          children: [
+            Icon(icon, color: isSelected ? Colors.black : Colors.grey),
+            const SizedBox(width: 8),
+            if (isSelected)
+              Text(
+                label,
+                style: const TextStyle(color: Colors.black),
+              ),
+          ],
+        ),
       ),
     );
   }
