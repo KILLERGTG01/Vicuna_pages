@@ -7,6 +7,8 @@ class TrackingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
         leading: Container(
           margin: const EdgeInsets.all(8.0),
           decoration: const BoxDecoration(
@@ -52,7 +54,8 @@ class TrackingPage extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             buildTrackingHeader('6556 23341 8090', 'Eno Express', 'Transit'),
-            buildTrackingTimeline('25 June, 2021', 'Sacramento', '30 June, 2021', 'Tamil Nadu'),
+            const SizedBox(height: 16),
+            buildHorizontalStepper(),
             const SizedBox(height: 16),
             const Text(
               'Tracking',
@@ -107,19 +110,19 @@ class TrackingPage extends StatelessWidget {
             children: [
               Text(
                 trackingCode,
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
               ),
-              Text(carrier),
+              Text(carrier, style: const TextStyle(color: Colors.black)),
             ],
           ),
           const Spacer(),
-          Text(status),
+          Text(status, style: const TextStyle(color: Colors.black)),
         ],
       ),
     );
   }
 
-  Widget buildTrackingTimeline(String startDate, String startLocation, String endDate, String endLocation) {
+  Widget buildHorizontalStepper() {
     return Container(
       padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
@@ -128,48 +131,36 @@ class TrackingPage extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(startDate),
-              Text(endDate),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Stack(
-            children: [
-              SizedBox(
-                height: 50,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: List.generate(4, (index) => buildTimelinePoint(index == 1)),
-                ),
-              ),
-              const Positioned.fill(
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: FractionallySizedBox(
-                    widthFactor: 0.25,
-                    child: Divider(
-                      color: Colors.blue,
-                      thickness: 2,
-                    ),
-                  ),
-                ),
-              ),
+              Text('25 June, 2021', style:  TextStyle(color: Colors.black)),
+              Text('30 June, 2021', style:  TextStyle(color: Colors.black)),
             ],
           ),
           const SizedBox(height: 8),
           Row(
+            children: [
+              buildStep(true, Icons.local_shipping),
+              buildLine(true),
+              buildStep(true, Icons.airplanemode_active),
+              buildLine(false),
+              buildStep(false, Icons.person),
+              buildLine(false),
+              buildStep(false, Icons.check_circle),
+            ],
+          ),
+          const SizedBox(height: 8),
+          const Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                startLocation,
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                'Sacramento',
+                style:  TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
               ),
               Text(
-                endLocation,
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                'Tamil Nadu',
+                style:  TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
               ),
             ],
           ),
@@ -178,16 +169,19 @@ class TrackingPage extends StatelessWidget {
     );
   }
 
-  Widget buildTimelinePoint(bool isActive) {
-    return Container(
-      width: 24,
-      height: 24,
-      decoration: BoxDecoration(
-        color: isActive ? Colors.blue : Colors.grey[300],
-        shape: BoxShape.circle,
-        border: Border.all(color: Colors.grey),
+  Widget buildStep(bool isActive, IconData icon) {
+    return CircleAvatar(
+      backgroundColor: isActive ? Colors.black : Colors.grey,
+      child: Icon(icon, color: Colors.white),
+    );
+  }
+
+  Widget buildLine(bool isActive) {
+    return Expanded(
+      child: Container(
+        height: 2,
+        color: isActive ? Colors.black : Colors.grey,
       ),
-      child: isActive ? const Icon(Icons.local_airport, color: Colors.white, size: 16) : null,
     );
   }
 
@@ -208,13 +202,13 @@ class TrackingPage extends StatelessWidget {
             children: [
               Text(
                 trackingCode,
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
               ),
-              Text(location),
+              Text(location, style: const TextStyle(color: Colors.black)),
             ],
           ),
           const Spacer(),
-          Text(status),
+          Text(status, style: const TextStyle(color: Colors.black)),
         ],
       ),
     );
